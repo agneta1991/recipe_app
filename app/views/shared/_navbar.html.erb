@@ -1,0 +1,39 @@
+<nav class="navbar">
+  <ul>
+    <li>
+      <% if user_signed_in? %>
+        <%= link_to "Your Foods", foods_path %>
+      <% else %>
+        <%= link_to "Your Foods", new_user_session_path %>
+      <% end %>
+    </li>
+    <li>
+      <% if user_signed_in? %>
+        <%= link_to "Your Recipes", recipes_path %> <!-- TODO: Fix/Add path -->
+      <% else %>
+        <%= link_to "Your Recipes", new_user_session_path %>
+      <% end %>
+    </li>
+    <li>
+      <% if user_signed_in? %>
+        <%= link_to "Public Recipes", recipes_path %><!-- TODO: Fix/Add path -->
+      <% else %>
+        <%= link_to "Public Recipes", new_user_session_path %>
+      <% end %>
+    </li>
+    <li>
+      <% if user_signed_in? %>
+        <%= link_to "Shopping List", food_path%><!-- TODO: Fix/Add path -->
+      <% else %>
+        <%= link_to "Shopping List", new_user_session_path %>
+      <% end %>
+    </li>
+    <li>
+      <% if user_signed_in? %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign In", new_user_session_path %>
+      <% end %>
+    </li>
+  </ul>
+</nav>
