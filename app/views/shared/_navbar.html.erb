@@ -4,26 +4,27 @@
       <% if user_signed_in? %>
         <%= link_to "Your Foods", foods_path %>
       <% else %>
-        <%= link_to "Your Foods", new_user_session_path %>
+        <%= link_to "Your Foods", new_user_registration_path %>
       <% end %>
+
     </li>
     <li>
       <% if user_signed_in? %>
-        <%= link_to "Your Recipes", recipes_path %> <!-- TODO: Fix/Add path -->
+        <%= link_to "Your Recipes"%> <!-- TODO: Fix/Add path -->
       <% else %>
-        <%= link_to "Your Recipes", new_user_session_path %>
+        <%= link_to "Your Recipes"%><!-- TODO: Fix/Add path -->
       <% end %>
     </li>
     <li>
       <% if user_signed_in? %>
-        <%= link_to "Public Recipes", recipes_path %><!-- TODO: Fix/Add path -->
+        <%= link_to "Public Recipes"%><!-- TODO: Fix/Add path -->
       <% else %>
-        <%= link_to "Public Recipes", new_user_session_path %>
+        <%= link_to "Public Recipes"%><!-- TODO: Fix/Add path -->
       <% end %>
     </li>
     <li>
       <% if user_signed_in? %>
-        <%= link_to "Shopping List", food_path%><!-- TODO: Fix/Add path -->
+        <%= link_to "Shopping List", general_shopping_lists_path%><!-- TODO: Fix/Add path -->
       <% else %>
         <%= link_to "Shopping List", new_user_session_path %>
       <% end %>
