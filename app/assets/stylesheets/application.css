@@ -33,6 +33,7 @@
   box-shadow: 10px 5px 5px grey;
   padding-bottom: 1rem;
 }
+
 .navbar > ul {
   display: flex;
   justify-content: space-around;
@@ -99,6 +100,7 @@ form>* {
   text-decoration: none;
   display: inline-block;
 }
+
 .add_food {
   align-self: flex-end;
   margin-right: 10%;
