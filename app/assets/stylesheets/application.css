@@ -29,6 +29,10 @@
   margin: 1rem;
 }
 
+.navbar {
+  box-shadow: 10px 5px 5px grey;
+  padding-bottom: 1rem;
+}
 .navbar > ul {
   display: flex;
   justify-content: space-around;
@@ -47,4 +51,51 @@
 
 .navbar > ul > li > a:hover {
   text-decoration: underline;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form>* {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.main_food_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem;
+}
+
+.custom-table {
+  width: 70vw;
+  border-collapse: collapse;
+  margin: 3rem;
+}
+
+.custom-table th,
+.custom-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: right;
+}
+
+.custom-table th {
+  background-color: #f2f2f2;
+}
+
+.custom-table .btn-cell {
+  text-align: center;
+}
+
+.custom-table .btn {
+  background-color: #d9534f;
+  color: #fff;
+  padding: 6px 12px;
+  text-decoration: none;
+  display: inline-block;
 }

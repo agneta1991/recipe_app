@@ -1,1 +1,28 @@
-<h1>This is foods index, where all th'Your food will be displayed'</h1>
+<div class='main_food_div'>
+<h1>Your Foods</h1>
+
+<%= link_to 'Add Food', new_food_path, class: 'btn' %>
+
+<table class="table custom-table">
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Measurement Unit</th>
+      <th>Unit Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.measurement_unit %></td>
+        <td><%= food.price %></td>
+        <td class="btn-cell">
+          <%= link_to 'Delete', food_path(food), data: {turbo_method: :delete}, class: 'btn' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
