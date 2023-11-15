@@ -85,6 +85,7 @@ GEM
     bootsnap (1.17.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    cancancan (3.5.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -111,6 +112,8 @@ GEM
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
+    faker (3.2.2)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -152,14 +155,14 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.4-x86_64-linux)
+    nokogiri (1.15.4-x64-mingw-ucrt)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.23.0)
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
-    pg (1.5.4)
+    pg (1.5.4-x64-mingw-ucrt)
     psych (5.1.1.1)
       stringio
     public_suffix (5.0.3)
@@ -251,7 +254,7 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    selenium-webdriver (4.15.0)
+    selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -273,6 +276,8 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2023.3)
+      tzinfo (>= 1.0.0)
     unicode-display_width (2.5.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -281,6 +286,10 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webdrivers (5.3.1)
+      nokogiri (~> 1.6)
+      rubyzip (>= 1.3.0)
+      selenium-webdriver (~> 4.0, < 4.11)
     webrick (1.8.1)
     websocket (1.2.10)
     websocket-driver (0.7.6)
@@ -291,13 +300,15 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
-  x86_64-linux
+  x64-mingw-ucrt
 
 DEPENDENCIES
   bootsnap
+  cancancan
   capybara
   debug
   devise
+  faker
   importmap-rails
   jbuilder
   pg (~> 1.1)
@@ -312,9 +323,10 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+  webdrivers
 
 RUBY VERSION
-   ruby 3.0.2p107
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.4.21
