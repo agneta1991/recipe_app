@@ -5,13 +5,6 @@
 </div>
 <div class='sign_up'>
 <h1>New Food</h1>
-
-<%= form_with(model: @food, url: foods_path, method: :post) do |form| %>
-  <%= render 'form', form: form %>
-
-  <div class="actions">
-    <%= form.submit 'Create Food', class: 'btn' %>
-  </div>
-<% end %>
+  <%= render 'form' %>
 </div>
 </div>

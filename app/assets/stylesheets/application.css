@@ -59,11 +59,16 @@ form {
   flex-direction: column;
 }
 
+.field_with_errors>*,
 form>* {
   margin-bottom: 1rem;
   padding: 0.5rem;
+  width: 100%;
 }
 
+.field_with_errors>* {
+  border: 1px solid red;
+}
 .main_food_div {
   display: flex;
   flex-direction: column;

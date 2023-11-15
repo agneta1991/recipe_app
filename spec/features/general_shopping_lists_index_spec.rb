@@ -40,7 +40,7 @@ RSpec.describe 'GeneralShoppingLists', type: :feature do
     end
 
     it 'shows the amount of foods to buy' do
-        expect(page).to have_content('3')
+      expect(page).to have_content('3')
     end
 
     context 'Click' do

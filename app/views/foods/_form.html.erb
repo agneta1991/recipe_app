@@ -1,4 +1,20 @@
+<%= form_with(model: @food, url: foods_path, method: :post) do |form| %>
+  <% if @food.errors.any? %>
+    <% @food.errors.full_messages_for(:name).each do |msg| %>
+      <p> <%= msg %> </p>
+    <% end %>
+    <% @food.errors.full_messages_for(:price).each do |msg| %>
+      <p> <%= msg %> </p>
+    <% end %>
+    <% @food.errors.full_messages_for(:quantity).each do |msg| %>
+      <p> <%= msg %> </p>
+    <% end %>
+  <% end %>
 <%= form.text_field :name, class: 'form-control', placeholder: 'Name of the food item' %>
 <%= form.text_field :measurement_unit, class: 'form-control', placeholder: 'Measurement unit (g, kg, ml etc.)' %>
 <%= form.text_field :price, class: 'form-control', placeholder: 'Price per unit in $' %>
 <%= form.text_field :quantity, class: 'form-control', placeholder: 'Quantity' %>
+  <div class="actions">
+    <%= form.submit 'Create Food', class: 'btn' %>
+  </div>
+<% end %>

@@ -39,9 +39,9 @@ RSpec.describe 'Food', type: :feature do
     end
 
     it 'shows a link for adding a food item ' do
-        visit foods_path
-        expect(page).to have_link('Add Food')
-      end
+      visit foods_path
+      expect(page).to have_link('Add Food')
+    end
 
     context 'Click' do
       it "redirects me to the general shopping list's page when I click on navigation bar shopping list" do

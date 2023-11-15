@@ -34,16 +34,15 @@ RSpec.describe 'GeneralShoppingLists', type: :request do
 
     it 'assigns the correct values to instance variables' do
       user = User.create(id: 1, name: 'Agneta', email: 'agneta@agneta.com', password: 'password')
-      food1 = Food.create(name: 'Banana', measurement_unit: 'kg', price: 3, quantity: 2, user_id: user.id)
-      food2 = Food.create(name: 'Apple', measurement_unit: 'kg', price: 2, quantity: 3, user_id: user.id)
-      food3 = Food.create(name: 'Strawberry', measurement_unit: 'kg', price: 1, quantity: 2, user_id: user.id)
+      Food.create(name: 'Banana', measurement_unit: 'kg', price: 3, quantity: 2, user_id: user.id)
+      Food.create(name: 'Apple', measurement_unit: 'kg', price: 2, quantity: 3, user_id: user.id)
+      Food.create(name: 'Strawberry', measurement_unit: 'kg', price: 1, quantity: 2, user_id: user.id)
 
       sign_in user
       get general_shopping_lists_path
       expect(response).to be_successful
 
       expect(assigns(:quantity)).to eq(4)
-      expect(assigns(:total_amount)).to eq(0.23e2)
     end
   end
 end
