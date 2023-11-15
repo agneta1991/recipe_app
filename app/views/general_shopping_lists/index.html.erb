@@ -19,7 +19,7 @@
       <tr>
         <td><%= food.name %></td>
         <td><%= food.quantity %></td>
-        <td><%= food.price %></td>
+        <td><%= number_to_currency(food.price)%></td>
       </tr>
     <% end %>
   </tbody>
