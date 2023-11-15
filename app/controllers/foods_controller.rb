@@ -6,11 +6,6 @@ class FoodsController < ApplicationController
     @foods = @user.foods
   end
 
-  def show
-    @user = current_user
-    @food = @user.foods
-  end
-
   def new
     @food = Food.new
     @foods = current_user.foods.all

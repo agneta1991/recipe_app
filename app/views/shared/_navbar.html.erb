@@ -24,7 +24,7 @@
     </li>
     <li>
       <% if user_signed_in? %>
-        <%= link_to "Shopping List", general_shopping_lists_path%><!-- TODO: Fix/Add path -->
+        <%= link_to "Shopping List", general_shopping_lists_path%>
       <% else %>
         <%= link_to "Shopping List", new_user_session_path %>
       <% end %>
