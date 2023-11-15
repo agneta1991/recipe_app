@@ -29,28 +29,57 @@ RSpec.describe 'Foods', type: :request do
     end
 
     it 'includes correct placeholder text in the response body' do
-      expect(response.body).to include("<h1>Your Foods</h1>")
+      expect(response.body).to include('<h1>Your Foods</h1>')
     end
   end
 
-  # describe 'GET #show' do
-  #   # Add similar tests as above for the 'show' action
-  # end
+  describe 'GET #new' do
+    before do
+      sign_in user
+      get new_food_path
+    end
 
-  # describe 'GET #new' do
-  #   # Add similar tests as above for the 'new' action
-  # end
+    it 'renders a successful response' do
+      expect(response).to be_successful
+    end
 
-  # describe 'POST #create' do
-  #   it 'renders a successful response' do
-  #     post :create, params: { food: { name: 'Example Food', measurement_unit: 'Unit', price: 10, quantity: 1 } }
-  #     expect(response).to redirect_to(foods_path)
-  #   end
+    it 'renders the correct template' do
+      expect(response).to render_template('new')
+    end
+  end
 
-  #   # Add more tests for the 'create' action as needed
-  # end
+  describe 'POST #create' do
+    before do
+      sign_in user
+    end
 
-  # describe 'DELETE #destroy' do
-  #   # Add tests for the 'destroy' action
-  # end
+    it 'creates a new food' do
+      expect do
+        post foods_path, params: { food: { name: 'Example Food', measurement_unit: 'Unit', price: 10, quantity: 1 } }
+      end.to change(Food, :count).by(1)
+    end
+
+    it 'redirects to foods_path' do
+      post foods_path, params: { food: { name: 'Example Food', measurement_unit: 'Unit', price: 10, quantity: 1 } }
+      expect(response).to redirect_to(foods_path)
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    before do
+      @user_food = create_food(user)
+      sign_in user
+    end
+
+    it 'destroys the requested food' do
+      expect do
+        delete food_path(@user_food)
+      end.to change(Food, :count).by(-1)
+    end
+
+    it 'redirects to the foods list' do
+      delete food_path(@user_food)
+      expect(response).to redirect_to(foods_path)
+    end
+  end
 end
