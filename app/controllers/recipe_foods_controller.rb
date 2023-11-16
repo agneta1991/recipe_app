@@ -1,27 +1,23 @@
 class RecipeFoodsController < ApplicationController
-  before_action :find_recipe_food, only: %i[destroy]
-  before_action :find_recipe, only: %i[new create]
+  before_action :find_recipe
+
 
   def new
-    @recipe = Recipe.find(params[:recipe_id])
-    @recipe_food = RecipeFood.new(recipe: @recipe)
-    @foods = Food.all
+    @recipe_food = RecipeFood.new
+    @foods = current_user.foods.where.not(id: @recipe.recipe_foods.pluck(:food_id))
   end
 
   def create
-    @recipe_food = RecipeFood.new(recipe_food_params)
-    @recipe_food.recipe = @recipe
+    @recipe_food = RecipeFood.new(recipe_food_params.merge(recipe: @recipe))
 
     if @recipe_food.save
-      redirect_to recipe_path(@recipe), notice: 'Food added to the recipe successfully!'
+      redirect_to @recipe, notice: 'Food added to the recipe successfully!'
     else
-      @foods = Food.all
-      render :new
+      render :new, status: 422
     end
   end
 
   def destroy
-    @recipe = Recipe.find(params[:recipe_id])
     @recipe_food = @recipe.recipe_foods.find(params[:id])
 
     if @recipe_food.destroy
@@ -29,19 +25,15 @@ class RecipeFoodsController < ApplicationController
     else
       redirect_to recipe_path(@recipe), alert: 'Error: Food could not be removed from the recipe'
     end
+  end
 
-    private
+  private
 
-    def recipe_food_params
-      params.require(:recipe_food).permit(:food_id, :quantity, :recipe_id)
-    end
+  def recipe_food_params
+    params.require(:recipe_food).permit(:food_id, :recipe_id, :quantity)
+  end
 
-    def find_recipe_food
-      @recipe_food = RecipeFood.find(params[:id])
-      @recipe = @recipe_food.recipe
-    end
-
-    def find_recipe
-      @recipe = Recipe.find(params[:recipe_id])
-    end
+  def find_recipe
+    @recipe = Recipe.find(params[:recipe_id])
+  end
 end

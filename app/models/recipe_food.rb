@@ -2,6 +2,7 @@ class RecipeFood < ApplicationRecord
   belongs_to :food
   belongs_to :recipe
 
-  validates :name, presence: true
   validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  delegate :name, to: :food
+  delegate :price, to: :food
 end
