@@ -22,5 +22,10 @@ RSpec.describe RecipeFood, type: :model do
       expect(recipe_food).not_to be_valid
       expect(recipe_food.errors[:quantity]).to include('must be greater than or equal to 0')
     end
+
+    it 'is not valid with a string and not a number for quantity' do
+      recipe_food = RecipeFood.new(recipe: recipe, food: food, quantity: 'four')
+      expect(recipe_food).not_to be_valid
+    end
   end
 end

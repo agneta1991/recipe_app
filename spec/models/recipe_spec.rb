@@ -28,10 +28,20 @@ RSpec.describe Recipe, type: :model do
         expect(recipe.errors[:preparation_time]).to include('must be greater than or equal to 0')
       end
 
+      it 'is not valid when preparation time is written as a string' do
+        recipe.preparation_time = 'one'
+        expect(recipe).to_not be_valid
+      end
+
       it 'is not valid with a negative cooking time' do
         recipe.cooking_time = -2
         expect(recipe).to_not be_valid
         expect(recipe.errors[:cooking_time]).to include('must be greater than or equal to 0')
+      end
+
+      it 'is not valid when cooking time its written as a string' do
+        recipe.cooking_time = 'two'
+        expect(recipe).to_not be_valid
       end
     end
   end
