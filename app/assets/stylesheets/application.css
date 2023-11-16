@@ -37,6 +37,7 @@
 .navbar > ul {
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }
 
 .navbar > ul > li {
