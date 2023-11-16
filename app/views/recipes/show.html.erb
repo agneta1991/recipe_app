@@ -21,7 +21,7 @@
   <% if current_user == @recipe.user %>
     <div class='buttons'>
       <button class='add_food'>Generate Shopping List</button>
-      <%= link_to 'Add Ingredients', new_food_path, class: 'add_food' %>
+      <%= link_to 'Add Ingredients', new_recipe_recipe_food_path(@recipe), class: 'add_food' %>
     </div>
   <% end %>
 
