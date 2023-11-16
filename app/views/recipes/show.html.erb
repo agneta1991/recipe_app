@@ -1,2 +1,57 @@
-<h1>Recipes#show</h1>
-<p>Find me in app/views/recipes/show.html.erb</p>
+<div class='main_food_div'>
+  <h1>
+    <%= @recipe.name %>
+  </h1>
+  <div class='rec_display'>
+    <div class='recipe_info'>
+      <p>Preparation time: <%= @recipe.preparation_time %>h</p>
+      <p>Cooking time: <%= @recipe.cooking_time %>h</p>
+      <p>Description: <%= @recipe.description %></p>
+    </div>
+    <div class='toggle_btn'>
+      <h5>Public</h5>
+      <% if current_user == @recipe.user %>
+        <label class="switch">
+          <input type="checkbox" checked>
+          <span class="slider round"></span>
+        </label>
+      <% end %>
+    </div>
+  </div>
+  <% if current_user == @recipe.user %>
+    <div class='buttons'>
+      <button class='add_food'>Generate Shopping List</button>
+      <%= link_to 'Add Ingredients', new_food_path, class: 'add_food' %>
+    </div>
+  <% end %>
+
+  <table class="table custom-table">
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <% if current_user == @recipe.user %>
+          <th>Action</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @recipe_foods.any? %> 
+        <% @recipe_foods.each do |food| %>
+            <tr>
+            <td><%= food.name %></td>
+            <td><%= food.quantity %></td>
+            <td><%= number_to_currency(food.price) %></td>
+            <% if current_user == @recipe.user %>
+                <td class="btn-cell">
+                <%= link_to 'Modify', class: 'btn' %><!-- TODO: Fix/Add path -->
+                <%= link_to 'Remove', class: 'btn' %><!-- TODO: Fix/Add path -->
+                </td>
+            <% end %>
+            </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

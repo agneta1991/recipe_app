@@ -1,17 +1,42 @@
-<div class= "main-signin">
-<div class='welcome'>
-<h1>Please add foods</h1>
-<p>To add foods please follow the form and fill all fields provided, please do add the names of the food item as a singular item</p>
-</div>
-<div class='sign_up'>
-<h1>New Food</h1>
+# <div class= "main-signin">
+# <div class='welcome'>
+# <h1>Please add foods</h1>
+# <p>To add foods please follow the form and fill all fields provided, please do add the names of the food item as a singular item</p>
+# </div>
+# <div class='sign_up'>
+# <h1>New Food</h1>
 
-<%= form_with(model: @food, url: foods_path, method: :post) do |form| %>
-  <%= render 'form', form: form %>
+# <%= form_with(model: @food, url: foods_path, method: :post) do |form| %>
+#   <%= render 'form', form: form %>
 
-  <div class="actions">
-    <%= form.submit 'Create Food', class: 'btn' %>
-  </div>
-<% end %>
-</div>
+#   <div class="actions">
+#     <%= form.submit 'Create Food', class: 'btn' %>
+#   </div>
+# <% end %>
+# </div>
+# </div>
+
+<div class="w-50 mx-auto bg-white p-5 pt-3 shadow">
+  <h2 class="text-2xl text-center mb-5"> Create new Food</h2>
+  <%= form_with(model: @food, url: foods_path) do |form| %>
+    <div class="container">
+      <div class="form-group">
+        <%= form.label :name, 'Name: ' %>
+        <%= form.text_field :name, placeholder: "Food name", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= form.label :measurement_unit, 'Measurement unit: ' %>
+        <%= form.select :measurement_unit, [["grams"], ["kilos"], ["liters"], ["milliliters"]], {}, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= form.label :price, 'Price: ' %>
+        <%= form.text_field :price, placeholder: "Price", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= form.label :quantity, 'Quantity: ' %>
+        <%= form.text_field :quantity, placeholder: "Quantity", class: "form-control" %>
+      </div>
+      <%= form.submit "Add New Food", class: "btn btn-success mt-3" %>
+    </div>
+  <% end %>
 </div>
