@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.2.2'
+ruby '3.0.2'
 
 gem 'faker'
 
@@ -8,7 +8,6 @@ gem 'webdrivers'
 
 gem 'cancancan'
 
-gem 'rails-controller-testing'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.1'
 
@@ -58,6 +57,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rspec-rails'
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
 
@@ -71,5 +71,6 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'rails-controller-testing'
   gem 'selenium-webdriver'
 end

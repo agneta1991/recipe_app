@@ -3,7 +3,7 @@
 <h1>Shoppin list</h1>
 <div class = 'amount_value_div'>
 <h3>Amount of food items to buy: <%= @quantity %></h3>
-<h3>Total value of food needed:</h3>
+<h3>Total value of food needed:<%= number_to_currency(@total_amount) %></h3>
 </div>
 
 <table class="table custom-table">
@@ -19,7 +19,7 @@
       <tr>
         <td><%= food.name %></td>
         <td><%= food.quantity %></td>
-        <td><%= food.price %></td>
+        <td><%= number_to_currency(food.price)%></td>
       </tr>
     <% end %>
   </tbody>

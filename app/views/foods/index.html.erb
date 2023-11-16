@@ -15,15 +15,12 @@
   </thead>
   <tbody>
     <% @foods.each do |food| %>
-      <tr class="border border-black">
-        <td class="border  border-black p-1"><%= food.name %></td>
-        <td class="border  border-black p-1"><%= food.measurement_unit %></td>
-        <td class="border  border-black p-1"><%= food.quantity %></td>
-        <td class="border  border-black p-1">$<%= food.price %></td>
-        <td class="border  border-black p-1">
-          <% if  food %>
-            <%= button_to 'Delete', food_path(food.id), method: :delete, class: 'btn btn-outline-danger' %>
-          <% end %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.measurement_unit %></td>
+        <td><%= number_to_currency(food.price) %></td>
+        <td class="btn-cell">
+          <%= link_to 'Delete', food_path(food), data: {turbo_method: :delete}, class: 'btn' %>
         </td>
       </tr>
     <% end %>
