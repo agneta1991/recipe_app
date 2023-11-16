@@ -10,17 +10,13 @@
     </li>
     <li>
       <% if user_signed_in? %>
-        <%= link_to "Your Recipes"%> <!-- TODO: Fix/Add path -->
+        <%= link_to "Your Recipes", recipes_path %> 
       <% else %>
         <%= link_to "Your Recipes", new_user_registration_path %>
       <% end %>
     </li>
     <li>
-      <% if user_signed_in? %>
-        <%= link_to "Public Recipes"%><!-- TODO: Fix/Add path -->
-      <% else %>
-        <%= link_to "Public Recipes"%><!-- TODO: Fix/Add path -->
-      <% end %>
+        <%= link_to "Recipes", public_recipes_path %>
     </li>
     <li>
       <% if user_signed_in? %>

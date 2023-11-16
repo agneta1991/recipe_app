@@ -1,17 +1,20 @@
-<h1 class="text-center text-primary text-uppercase heading-text mb-3">Public Recipes</h1>
-<div class="d-flex flex-column text-light">
-  <% @public_recipes.each do |recipe| %>
-    <div class="d-flex justify-content-between align-items-start bg-primary pt-4 pb-3 mb-2 ps-5 pe-5">
-      <div>
-        <%= link_to recipe_path(recipe), class: 'text-white text-decoration-none' do %>
-          <h2><%= recipe.name %></h2>
-          <h6> By <%= recipe.user.name %></h6>
-        <% end %>
-      </div>
+<div class='main_food_div'>
+  <h1>Public Recipes</h1>
+  <div class="recipes">
+    <% @public_recipes.each do |recipe| %>
+      <div class="individual_recipe">
+        <div class="div_one">
+          <%= link_to recipe_path(recipe), class: 'recipe_name' do %>
+            <%= recipe.name %>
+          <% end %>
+          <h5> By <%= recipe.user.name %></h5>
+        </div>
 
-      <div>
-        <p>Total Food Items: <%= recipe.total_food_items %></p>
-        <p>Total Price: <%= number_to_currency(recipe.total_price, unit: '$') %></p>
+        <div class="div_two">
+          <p>Total Food Items: <%= recipe.total_food_items %></p>
+          <p>Total Price: <%= number_to_currency(recipe.total_price, unit: '$') %></p>
+        </div>
       </div>
-    </div>
-<% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<%= form_with(model: @recipe, url: recipes_path, method: :post) do |form| %>
+    <% if @recipe.errors.any? %>
+      <% @recipe.errors.full_messages_for(:name).each do |msg| %>
+        <p> <%= msg %> </p>
+      <% end %>
+      <% @recipe.errors.full_messages_for(:quantity).each do |msg| %>
+        <p> <%= msg %> </p>
+      <% end %>
+    <% end %>
+  
+    <%= form.text_field :name, class: 'form-control', placeholder: 'Name of the recipe' %>
+    <%= form.text_field :preparation_time, class: 'form-control', placeholder: 'Preparation time (e.g., 0.5 to mark 30 minutes)' %>
+    <%= form.text_field :cooking_time, class: 'form-control', placeholder: 'Cooking time (e.g., 1 to mark one hour)' %>
+    <%= form.text_area :description, class: 'form-control', placeholder: 'Description of the recipe' %>
+  
+    <%= form.label :public, class: 'form-check-label' do %>
+      To make this recipe public, check the box please
+      <%= form.check_box :public, value: 'true' %>
+    <% end %>
+  
+    <%= form.submit 'Create Recipe', class: 'btn' %>
+<% end %>
