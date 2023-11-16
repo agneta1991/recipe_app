@@ -1,4 +1,6 @@
 class FoodsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @user = current_user
     @foods = @user.foods
@@ -15,19 +17,11 @@ class FoodsController < ApplicationController
   end
 
   def create
-    puts current_user.id
-    @food = Food.new(
-      name: food_params[:name],
-      measurement_unit: food_params[:measurement_unit],
-      price: food_params[:price],
-      quantity: food_params[:quantity],
-      user_id: current_user.id
-    )
-
+    @food = Food.new(food_params.merge(user_id: current_user.id))
     if @food.save
       redirect_to foods_path, notice: 'Food item was successfully created.'
     else
-      render :new
+      render :new, status: 422
     end
   end
 
