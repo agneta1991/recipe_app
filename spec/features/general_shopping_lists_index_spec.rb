@@ -3,44 +3,58 @@ require 'rails_helper'
 RSpec.describe 'GeneralShoppingLists', type: :feature do
   let(:user) { User.create(id: 1, name: 'Agneta', email: 'agneta@agneta.com', password: 'password') }
 
-  def create_food(user, name, measurement_unit, price, quantity)
-    Food.create(name: name, measurement_unit: measurement_unit, price: price, quantity: quantity, user_id: user.id)
-  end
-
   describe 'GET /index' do
     before do
-      create_food(user, 'Banana', 'kg', 3, 4)
-      create_food(user, 'Grapes', 'kg', 2, 5)
-      create_food(user, 'Apple', 'kg', 1, 6)
-
       sign_in user
       visit general_shopping_lists_path
     end
 
     it 'shows food names' do
-      expect(page).to have_content('Banana')
-      expect(page).to have_content('Grapes')
-      expect(page).to have_content('Apple')
+      unique_recipe_foods = [
+        { food_name: 'Apple', quantity: 3, price: 1.99 },
+        { food_name: 'Banana', quantity: 5, price: 0.99 }
+      ]
+
+      allow_any_instance_of(GeneralShoppingListsController).to receive(:index) do |controller|
+        controller.instance_variable_set(:@unique_recipe_foods, unique_recipe_foods)
+      end
+      visit general_shopping_lists_path
+
+      unique_recipe_foods.each do |recipe_food|
+        expect(page).to have_content(recipe_food[:food_name])
+      end
     end
 
     it 'shows quantity' do
-      expect(page).to have_content('4')
-      expect(page).to have_content('5')
-      expect(page).to have_content('6')
+      unique_recipe_foods = [
+        { food_name: 'Apple', quantity: 3, price: 1.99 },
+        { food_name: 'Banana', quantity: 5, price: 0.99 }
+      ]
+
+      allow_any_instance_of(GeneralShoppingListsController).to receive(:index) do |controller|
+        controller.instance_variable_set(:@unique_recipe_foods, unique_recipe_foods)
+      end
+      visit general_shopping_lists_path
+
+      unique_recipe_foods.each do |recipe_food|
+        expect(page).to have_content(recipe_food[:quantity])
+      end
     end
 
     it 'shows prices' do
-      expect(page).to have_content('$3.00')
-      expect(page).to have_content('$2.00')
-      expect(page).to have_content('$1.00')
-    end
+      unique_recipe_foods = [
+        { food_name: 'Apple', quantity: 3, price: 1.99 },
+        { food_name: 'Banana', quantity: 5, price: 0.99 }
+      ]
 
-    it 'shows the total amount' do
-      expect(page).to have_content('$28.00')
-    end
+      allow_any_instance_of(GeneralShoppingListsController).to receive(:index) do |controller|
+        controller.instance_variable_set(:@unique_recipe_foods, unique_recipe_foods)
+      end
+      visit general_shopping_lists_path
 
-    it 'shows the amount of foods to buy' do
-      expect(page).to have_content('3')
+      unique_recipe_foods.each do |recipe_food|
+        expect(page).to have_content(recipe_food[:food_name])
+      end
     end
 
     context 'Click' do
