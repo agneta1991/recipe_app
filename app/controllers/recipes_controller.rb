@@ -1,6 +1,4 @@
 class RecipesController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:toggle_public]
-
   def index
     @recipes = current_user.recipes
   end
