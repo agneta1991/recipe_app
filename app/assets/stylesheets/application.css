@@ -31,7 +31,7 @@
 
 .navbar {
   box-shadow: 10px 5px 5px grey;
-  padding-bottom: 1rem;
+  padding: 1rem;
 }
 
 .navbar > ul {
@@ -222,8 +222,10 @@ input:checked+.slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
+
 .slider.round {
   border-radius: 34px;
+  width: 3.7rem;
 }
 
 .slider.round:before {
@@ -234,6 +236,7 @@ input:checked+.slider:before {
   display: flex;
   padding: 3rem;
   margin-top: 2rem;
+  width: 80%;
 }
 
 .recipe_info,

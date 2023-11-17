@@ -44,10 +44,10 @@ RSpec.describe 'Food', type: :feature do
     end
 
     context 'Click' do
-      it "redirects me to the general shopping list's page when I click on navigation bar shopping list" do
+      it "redirects me to add new food item form page when I click on button add food" do
         visit foods_path
-        click_link 'Shopping List'
-        expect(page).to have_current_path(general_shopping_lists_path)
+        click_link 'Add Food'
+        expect(page).to have_current_path(new_food_path)
       end
     end
   end

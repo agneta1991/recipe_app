@@ -8,23 +8,28 @@
       <p>Cooking time: <%= @recipe.cooking_time %>h</p>
       <p>Description: <%= @recipe.description %></p>
     </div>
-    <div class='toggle_btn'>
-      <h5>Public</h5>
+    <div class="toggle_btn">
       <% if current_user == @recipe.user %>
+            <h5>Public</h5>
         <label class="switch">
-          <input type="checkbox" checked>
-          <span class="slider round"></span>
+          <%= form_with(model: @recipe, url: recipe_path(@recipe), method: :patch) do |form| %>
+            <%= form.label :public do %>
+              <%= form.check_box :public, { checked: @recipe.public, onchange: 'this.form.submit()' } %>
+              <span class="slider round"></span>
+            <% end %>
+          <% end %>
         </label>
+      <% else %>
+        <h5>This is a public recipe</h5>
       <% end %>
     </div>
   </div>
   <% if current_user == @recipe.user %>
     <div class='buttons'>
-      <button class='add_food'>Generate Shopping List</button>
+      <%= link_to 'Generate Shopping List', general_shopping_lists_path, class: 'add_food' %>
       <%= link_to 'Add Ingredients', new_recipe_recipe_food_path(@recipe), class: 'add_food' %>
     </div>
   <% end %>
-
   <table class="table custom-table">
     <thead>
       <tr>
@@ -37,19 +42,19 @@
       </tr>
     </thead>
     <tbody>
-      <% if @recipe_foods.any? %> 
+      <% if @recipe_foods.any? %>
         <% @recipe_foods.each do |food| %>
-            <tr>
+          <tr>
             <td><%= food.name %></td>
             <td><%= food.quantity %></td>
-            <td><%= number_to_currency(food.price) %></td>
+            <td><%= number_to_currency(food.price * food.quantity) %></td>
             <% if current_user == @recipe.user %>
-                <td class="btn-cell">
-                <%= link_to 'Modify', class: 'btn' %><!-- TODO: Fix/Add path -->
-                <%= link_to 'Remove', class: 'btn' %><!-- TODO: Fix/Add path -->
-                </td>
+              <td class="btn-cell">
+                <%= link_to 'Modify', edit_recipe_recipe_food_path(@recipe, food), data: { turbo_method: :get }, class: 'btn' %>
+                <%= link_to 'Remove', recipe_recipe_food_path(@recipe, food), data: { turbo_method: :delete }, class: 'btn', method: :delete %>
+              </td>
             <% end %>
-            </tr>
+          </tr>
         <% end %>
       <% end %>
     </tbody>

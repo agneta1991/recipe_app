@@ -15,13 +15,14 @@
     </tr>
   </thead>
   <tbody>
-    <% @foods.each do |food| %>
-      <tr>
-        <td><%= food.name %></td>
-        <td><%= food.quantity %></td>
-        <td><%= number_to_currency(food.price)%></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <tbody>
+  <% @unique_recipe_foods.each do |recipe_food| %>
+    <tr>
+      <td><%= recipe_food[:food_name] %></td>
+      <td><%= recipe_food[:quantity] %></td>
+      <td><%= number_to_currency(recipe_food[:price]) %></td>
+    </tr>
+  <% end %>
+</tbody>
 </table>
 </div>
