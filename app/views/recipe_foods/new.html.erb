@@ -1,0 +1,21 @@
+<div class='main_food_div'>
+  <h1>Add Food to Recipe</h1>
+
+  <%= form_with(model: @recipe_food, url: recipe_recipe_foods_path, method: :post) do |f| %>
+
+    <div>
+      <%= f.label :food_id, 'Food' %>
+      <%= f.collection_select :food_id, @foods, :id, :name, prompt: 'Select a Food' %>
+    </div>
+    <div>
+      <%= f.label :quantity, 'Quantity' %>
+      <%= f.number_field :quantity %>
+    </div>
+
+    <div>
+      <%= f.submit 'Add Food' %>
+    </div>
+  <% end %>
+
+  <%= link_to 'Back to Recipe', recipes_path %>
+</div>

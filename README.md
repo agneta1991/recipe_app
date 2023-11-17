@@ -79,7 +79,7 @@ Before running this project, make sure you have the following prerequisites inst
 - Twitter: [@twitterhandle](https://twitter.com/pupienytea)<br>
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/agneta-pupienyte/)<br>
 
-👤 **Deborah Fashoro**
+👤 **Toyyib Ballo**
 
 - GitHub: [@githubhandle](https://github.com/Simpleshaikh1)<br>
 - Twitter: [@twitterhandle](https://twitter.com/simpleshaikh1)<br>

@@ -1,0 +1,20 @@
+<div class='main_food_div'>
+  <h1>Recipes</h1>
+  <div class="recipes">
+    <% @public_recipes.each do |recipe| %>
+      <div class="individual_recipe">
+        <div class="div_one">
+          <%= link_to recipe_path(recipe), class: 'recipe_name' do %>
+            <%= recipe.name %>
+          <% end %>
+          <h5> By <%= recipe.user.name %></h5>
+        </div>
+
+        <div class="div_two">
+          <p>Total Food Items: <%= recipe.total_food_items %></p>
+          <p>Total Price: <%= number_to_currency(recipe.total_price, unit: '$') %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

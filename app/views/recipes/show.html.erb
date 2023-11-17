@@ -1,0 +1,62 @@
+<div class='main_food_div'>
+  <h1>
+    <%= @recipe.name %>
+  </h1>
+  <div class='rec_display'>
+    <div class='recipe_info'>
+      <p>Preparation time: <%= @recipe.preparation_time %>h</p>
+      <p>Cooking time: <%= @recipe.cooking_time %>h</p>
+      <p>Description: <%= @recipe.description %></p>
+    </div>
+    <div class="toggle_btn">
+      <% if current_user == @recipe.user %>
+            <h5>Public</h5>
+        <label class="switch">
+          <%= form_with(model: @recipe, url: recipe_path(@recipe), method: :patch) do |form| %>
+            <%= form.label :public do %>
+              <%= form.check_box :public, { checked: @recipe.public, onchange: 'this.form.submit()' } %>
+              <span class="slider round"></span>
+            <% end %>
+          <% end %>
+        </label>
+      <% else %>
+        <h5>This is a public recipe</h5>
+      <% end %>
+    </div>
+  </div>
+  <% if current_user == @recipe.user %>
+    <div class='buttons'>
+      <%= link_to 'Generate Shopping List', general_shopping_lists_path, class: 'add_food' %>
+      <%= link_to 'Add Ingredients', new_recipe_recipe_food_path(@recipe), class: 'add_food' %>
+    </div>
+  <% end %>
+  <table class="table custom-table">
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <% if current_user == @recipe.user %>
+          <th>Action</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @recipe_foods.any? %>
+        <% @recipe_foods.each do |food| %>
+          <tr>
+            <td><%= food.name %></td>
+            <td><%= food.quantity %></td>
+            <td><%= number_to_currency(food.price * food.quantity) %></td>
+            <% if current_user == @recipe.user %>
+              <td class="btn-cell">
+                <%= link_to 'Modify', edit_recipe_recipe_food_path(@recipe, food), data: { turbo_method: :get }, class: 'btn' %>
+                <%= link_to 'Remove', recipe_recipe_food_path(@recipe, food), data: { turbo_method: :delete }, class: 'btn', method: :delete %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,28 @@
+
+<div class='main_food_div'>
+<h1>Shopping list for all your recipes</h1>
+<div class = 'amount_value_div'>
+<h3>Amount of food items to buy: <%= @quantity %></h3>
+<h3>Total value of food needed:<%= number_to_currency(@total_amount) %></h3>
+</div>
+
+<table class="table custom-table">
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tbody>
+  <% @unique_recipe_foods.each do |recipe_food| %>
+    <tr>
+      <td><%= recipe_food[:food_name] %></td>
+      <td><%= recipe_food[:quantity] %></td>
+      <td><%= number_to_currency(recipe_food[:price]) %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+</div>
