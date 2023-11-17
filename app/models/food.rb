@@ -3,6 +3,6 @@ class Food < ApplicationRecord
   has_many :recipe_foods, dependent: :destroy
 
   validates :name, presence: true
-  validates :price, numericality: { only_integer: true }
+  validates :price, numericality: { allow_float: true }
   validates :quantity, numericality: { only_integer: true }
 end

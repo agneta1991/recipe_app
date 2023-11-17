@@ -4,14 +4,17 @@ class RecipesController < ApplicationController
   def index
     @recipes = current_user.recipes
   end
+
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_foods = @recipe.recipe_foods
   end
+
   def new
     @recipe = Recipe.new
     @recipes = current_user.recipes.all
   end
+
   def create
     public_param = params[:recipe][:public] == '1'
     @recipe = Recipe.new(recipe_params.merge(user_id: current_user.id, public: public_param))
@@ -21,6 +24,18 @@ class RecipesController < ApplicationController
       render :new, status: 422
     end
   end
+
+  def update
+    @recipe = current_user.recipes.find(params[:id])
+    public_param = params[:recipe][:public] == '1'
+  
+    if @recipe.update(recipe_params.merge(public: public_param))
+      redirect_to recipe_path(@recipe), notice: 'Recipe was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @recipe = current_user.recipes.find_by(id: params[:id])
     if @recipe.destroy
@@ -29,10 +44,13 @@ class RecipesController < ApplicationController
       redirect_to recipe_path, alert: 'Error: could not be deleted'
     end
   end
+
   private
+
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
   end
+
   def recipe_params_public
     params.require(:recipe).permit(:public)
   end
