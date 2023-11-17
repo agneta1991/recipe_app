@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = current_user.recipes.find(params[:id])
     public_param = params[:recipe][:public] == '1'
-  
+
     if @recipe.update(recipe_params.merge(public: public_param))
       redirect_to recipe_path(@recipe), notice: 'Recipe was successfully updated.'
     else

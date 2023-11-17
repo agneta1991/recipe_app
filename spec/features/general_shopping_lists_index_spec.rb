@@ -38,7 +38,8 @@ RSpec.describe 'GeneralShoppingLists', type: :feature do
 
       unique_recipe_foods.each do |recipe_food|
         expect(page).to have_content(recipe_food[:quantity])
-      end    end
+      end
+    end
 
     it 'shows prices' do
       unique_recipe_foods = [

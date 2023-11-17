@@ -7,4 +7,3 @@ class PublicRecipesController < ApplicationController
                       end
   end
 end
-
