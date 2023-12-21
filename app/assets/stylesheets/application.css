@@ -30,7 +30,8 @@
 }
 
 .navbar {
-  box-shadow: 10px 5px 5px grey;
+  background: #afb1f8;
+  background: linear-gradient(356deg, rgba(175, 177, 248, 1) 0%, #ebc8c2 42%);
   padding: 1rem;
 }
 
@@ -46,9 +47,27 @@
 
 .navbar > ul > li > a {
   list-style: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   text-decoration: none;
-  color: black;
+  color: white;
+  text-shadow: 1px 1px 1px rgb(175, 177, 248);
+  font-weight: 600;
+}
+
+.pink {
+  box-shadow: 10px 5px 5px #afb1f8;
+  border: 1px solid #ebc8c2;
+}
+
+.purple {
+  box-shadow: 10px 5px 5px #ebc8c2;
+  border: 1px solid #afb1f8;
+}
+
+.purple:hover,
+.pink:hover {
+  background: #afb2f86b;
+  background: linear-gradient(356deg, rgba(175, 178, 248, 0.116) 0%, #ebc8c22e 42%);
 }
 
 .navbar > ul > li > a:hover {
@@ -79,6 +98,13 @@ form > *,
   margin: 3rem;
 }
 
+.main_food_div > h1 {
+  font-family: 'Sevillana', cursive;
+  font-style: italic;
+  font-size: 5rem;
+  font-weight: 400;
+}
+
 .custom-table {
   width: 70vw;
   border-collapse: collapse;
@@ -87,13 +113,18 @@ form > *,
 
 .custom-table th,
 .custom-table td {
-  border: 1px solid #ddd;
+  border: 1px solid #e88d8d6b;
   padding: 8px;
   text-align: right;
 }
 
 .custom-table th {
-  background-color: #f2f2f2;
+  background-color: #ebc8c2;
+  border-bottom: 2px solid #d9534f;
+  color: #d9534f;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 1px white;
 }
 
 .custom-table .btn-cell {
@@ -104,9 +135,9 @@ form > *,
 .custom-table .btn {
   background-color: #d9534f;
   color: #fff;
-  padding: 6px 12px;
   text-decoration: none;
   display: inline-block;
+  padding: 0.4rem;
 }
 
 .add_food {
@@ -136,8 +167,6 @@ form > *,
 
 .individual_recipe {
   display: flex;
-  box-shadow: 10px 5px 5px grey;
-  border: 1px solid rgba(128, 128, 128, 0.316);
 }
 
 .div_one {
@@ -153,19 +182,27 @@ form > *,
 .div_two {
   width: 60%;
   margin: 0.4rem;
+  padding-left: 5rem;
 }
 
 .div_two > p {
   padding: 1rem;
   font-size: 1rem;
   font-weight: bolder;
+  color: #2196f383;
+  text-shadow: 1px 1px 1px rgba(0, 0, 255, 0.158);
 }
 
 .recipe_name {
   font-weight: 600;
   font-size: 2rem;
   text-decoration: none;
-  color: black;
+  color: rgba(128, 0, 128, 0.455);
+}
+
+h5 {
+  color: #2195f383;
+  font-weight: 600;
 }
 
 .switch {
@@ -256,4 +293,8 @@ input:checked + .slider::before {
   border-bottom: 1px solid black;
   width: 90%;
   padding: 2rem;
+}
+
+.thead {
+  background-color: #ebc8c2;
 }

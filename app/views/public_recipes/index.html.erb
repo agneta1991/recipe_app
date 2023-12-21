@@ -1,8 +1,8 @@
 <div class='main_food_div'>
-  <h1>Recipes</h1>
+  <h1>Recipes <img width="100" height="100" src="https://img.icons8.com/plasticine/100/cupcake.png" alt="cupcake"/></h1>
   <div class="recipes">
-    <% @public_recipes.each do |recipe| %>
-      <div class="individual_recipe">
+    <% @public_recipes.each_with_index do |recipe, index| %>
+      <div class="individual_recipe <%= cycle('purple', 'pink', name: 'recipe_colors') %>">
         <div class="div_one">
           <%= link_to recipe_path(recipe), class: 'recipe_name' do %>
             <%= recipe.name %>
